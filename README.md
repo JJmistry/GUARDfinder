@@ -17,7 +17,7 @@ Clone out the GitHub repo:
 ```
 cd $guard_root
 
-git clone https://github.com/MatthewACoelho/GUARDfinder.git .
+git clone https://github.com/MatthewACoelho/GUARDfinder.git 
 ```
 
 The pipeline requires R with `optparse`  and `BSgenome` packages for each of the genomes required, and `nextflow`. One way to get these if you don’t already have them is using `conda`:
@@ -36,7 +36,15 @@ source deactivate
 ```
 
 The off-target search is a C program requiring 64-bit architecture, which can be compiled as follows (only tested on Centos 7).
+To run this on Windows will require CYGWIN https://sourceware.org/cygwin/
+To collect the required C packages run the following command in the Command prompt in the folder CYGWIN is installed in 
+```
+setup-x86_64.exe -q -P wget -P gcc-g++ -P make -P diffutils -P libmpfr-devel -P libgmp-devel -P libmpc-devel
+```
 
+This command will run the C program
+NOTE: For windows, you will need to open a cygwin terminal (via the Start menu or cygwin.bat after you have installed the required packages above.
+Running cd /cygdrive/c in the cygwin terminal will let you navigate to the C drive (and the onto where your scripts are stored)
 ```
 gcc -mcmodel=medium -O4 -o bin/ot -pthread src/ot.c
 ```

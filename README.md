@@ -44,6 +44,8 @@ setup-x86_64.exe -q -P wget -P gcc-g++ -P make -P diffutils -P libmpfr-devel -P 
 
 This command will run the C program
 NOTE: For windows, you will need to open a cygwin terminal (via the Start menu or cygwin.bat after you have installed the required packages above.
+
+NB: Using  ln -s /cygdrive/c /c will mean cd /c/ will navigate to the C drive
 Running cd /cygdrive/c in the cygwin terminal will let you navigate to the C drive (and the onto where your scripts are stored)
 ```
 gcc -mcmodel=medium -O4 -o bin/ot -pthread src/ot.c
@@ -63,7 +65,10 @@ and Mouse:
 
 ```
 curl http://ftp.ensembl.org/pub/current_fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.toplevel.fa.gz > $guard_root/data/mm10.fa.gz
-curl http://ftp.ensembl.org/pub/current_gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz > $guard_root/data/mm10.gtf.gz
+#curl http://ftp.ensembl.org/pub/current_gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz > $guard_root/data/mm10.gtf.gz
+# 96 returns 404 error
+curl http://ftp.ensembl.org/pub/current_gtf/mus_musculus/Mus_musculus.GRCm38.99.gtf.gz > $guard_root/data/mm10.gtf.gz
+
 ```
 
 To create an off-target index for a genome `$genome` for PAM `$pam`:
